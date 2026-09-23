@@ -83,12 +83,3 @@ curl.exe -X POST http://localhost:5000/chat -H "Content-Type: application/json" 
 
 La respuesta siempre viene en formato JSON: `{"response": "..."}`.
 
-## Subir el proyecto a GitHub
-
-```bash
-git init
-git add .
-git commit -m "Chatbot escuela: intents, entrenamiento, servidor y frontend"
-git remote add origin https://github.com/TU-USUARIO/TU-REPO.git
-git push -u origin main
-```
