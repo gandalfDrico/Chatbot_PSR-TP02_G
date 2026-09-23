@@ -1,0 +1,88 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": [
+        "Hola",
+        "Buenas tardes",
+        "Buenos días",
+        "¿Cómo estás?",
+        "Hey",
+        "Qué tal",
+        "Hola bot",
+        "Buenas"
+      ],
+      "responses": [
+        "¡Hola! Soy el asistente virtual de la escuela. Puedo ayudarte con prácticas profesionalizantes, talleres y laboratorios, mesas de examen y trámites de documentación. ¿Qué duda tenés?"
+      ]
+    },
+    {
+      "tag": "pasantias",
+      "patterns": [
+        "¿Cuándo empiezan las prácticas profesionalizantes?",
+        "Requisitos para las pasantías",
+        "¿Qué necesito para hacer las prácticas?",
+        "Información sobre pasantías",
+        "¿Cómo hago para presentarme a las prácticas?",
+        "Fecha de inicio de las pracitcas",
+        "Que piden para las pp",
+        "Requisitos praciticas profesionalizantes",
+        "¿Las pasantías son obligatorias?"
+      ],
+      "responses": [
+        "Las Prácticas Profesionales / Pasantías inician formalmente en el segundo cuatrimestre para alumnos de 6.º año. Debes tener los talleres del ciclo superior aprobados y presentar la ficha médica actualizada al Jefe de Área. La inscripción se realiza en Secretaría."
+      ]
+    },
+    {
+      "tag": "talleres",
+      "patterns": [
+        "¿Cuáles son las normas de seguridad del taller?",
+        "Protocolo de seguridad en el laboratorio",
+        "¿Qué tengo que hacer para usar las herramientas?",
+        "Normas del taller",
+        "¿Puedo usar la máquina sin supervisión?",
+        "Seguridad en los talleres",
+        "Reglas del laboratorio",
+        "¿Qué ropa hay que usar en el taller?",
+        "Protoco de seguridah del taller"
+      ],
+      "responses": [
+        "En Talleres y Laboratorios es obligatorio: usar el guardamonte y ropa de trabajo ajustada (sin anillos ni cadenas), no usar las máquinas sin la supervisión del docente, reportar cualquier herramienta dañada y mantener el lugar limpio antes de salir. El protocolo completo está afuera de cada taller."
+      ]
+    },
+    {
+      "tag": "mesas_de_examen",
+      "patterns": [
+        "¿Cuándo son las mesas de examen?",
+        "Información sobre examenes finales",
+        "¿Cómo me anoto en la mesa?",
+        "Fecha de la previa",
+        "Quiero rendir una equivalencia",
+        "Inscripción a finales",
+        "Mesas de examen",
+        "Cuando rindo las materias del 6 año",
+        "Requisitos para rendir una preavia"
+      ],
+      "responses": [
+        "Las mesas de examen (previas y finales) se rinden en la época de fin de año y en la convocatoria de marzo. Para anotarte, acercá el formulario de inscripción a Secretaría antes de la fecha límite. Para equivalencias, consultá al Jefe de Sección con tu legajo a mano."
+      ]
+    },
+    {
+      "tag": "documentacion",
+      "patterns": [
+        "¿Cómo saco la constancia de alumno regular?",
+        "Necesito un certificado de estudio",
+        "Papel para la obra social",
+        "Constancia de alumno",
+        "Certificado de alumno regular",
+        "¿Dónde pido el analítico?",
+        "Constancia para el work",
+        "Tramite de constansia",
+        "Nesecito un certificado para el trabajo"
+      ],
+      "responses": [
+        "Puedes solicitar tu constancia de alumno regular en Secretaría de lunes a viernes de 8:00 a 12:00 hs, o pedirla de forma digital enviando un correo a secretaria@escuelatecnica.edu.ar con tus datos. El analítico (título) se pide recién egresado, también en Secretaría."
+      ]
+    }
+  ]
+}
