@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Escuela Técnica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .chat-container {
+      width: 400px;
+      height: 500px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background-color: #0056b3;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .message {
+      padding: 10px 14px;
+      border-radius: 15px;
+      max-width: 75%;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .user-message {
+      background-color: #007bff;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+    .bot-message {
+      background-color: #e9ecef;
+      color: #333;
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+    .chat-input-area {
+      display: flex;
+      border-top: 1px solid #ddd;
+      padding: 10px;
+      background: #fff;
+    }
+    .chat-input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+    .chat-input-area button {
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      padding: 0 15px;
+      margin-left: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .chat-input-area button:hover {
+      background-color: #004085;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Asistente de Trámites Escolares</div>
+    <div class="chat-box" id="chatBox">
+      <div class="message bot-message">¡Hola! Soy el asistente virtual. ¿Qué duda tenés sobre los trámites, talleres o pasantías de la escuela?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="userInput" placeholder="Escribí tu consulta acá..." onkeypress="handleKeyPress(event)">
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    // Dirección de red de la API de Python (servidor Flask)
+    const API_URL = 'http://localhost:5000/chat';
+
+    // Función principal para enviar el mensaje por la red
+    async function sendMessage() {
+      const inputField = document.getElementById('userInput');
+      const text = inputField.value.trim();
+      if (text === "") return;
+
+      // 1. Mostrar el mensaje del usuario en la pantalla
+      appendMessage(text, 'user-message');
+      inputField.value = "";
+
+      try {
+        // 2. Realizar la petición de red (HTTP POST) usando fetch()
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })  // Convertimos el objeto en texto JSON
+        });
+
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+
+        // 3. Procesar la respuesta JSON que devuelve la Red Neuronal
+        const data = await response.json();
+
+        // 4. Mostrar la respuesta del bot en pantalla
+        appendMessage(data.response, 'bot-message');
+      } catch (error) {
+        console.error('Error de red:', error);
+        appendMessage('Error de red: No se pudo conectar con el servidor del chatbot.', 'bot-message');
+      }
+    }
+
+    // Función auxiliar para agregar las burbujas de texto al contenedor visual
+    function appendMessage(text, className) {
+      const chatBox = document.getElementById('chatBox');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', className);
+      messageDiv.innerText = text;
+      chatBox.appendChild(messageDiv);
+      // Auto-scroll hacia el último mensaje recibido
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Permite mandar el mensaje al presionar la tecla 'Enter'
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
+  </script>
+</body>
+</html>
